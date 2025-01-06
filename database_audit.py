@@ -1,8 +1,6 @@
 import pyodbc
 from password_policy import check_password_policy
-from audit_log import log_audit
 
-# Connect to SQL Server
 def connect_to_database():
     connection = pyodbc.connect(
         "Driver={SQL Server};"
@@ -12,7 +10,6 @@ def connect_to_database():
     )
     return connection
 
-# Function to audit users
 def audit_users():
     conn = connect_to_database()
     cursor = conn.cursor()
@@ -25,5 +22,15 @@ def audit_users():
         username, password, role = row
         password_policy, suggestions = check_password_policy(password)
         audited_results.append((username, role, password_policy, suggestions))
-        log_audit(f"Audited user: {username}, Role: {role}, Password Policy: {password_policy}")
     return audited_results
+
+def check_role_privileges(role):
+    """
+    Check privileges for the specified role.
+    """
+    privileges = {
+        "Admin": ["Full Access", "Manage Users", "Database Config"],
+        "Auditor": ["View Logs", "Audit Data"],
+        "User": ["Limited Access"]
+    }
+    return privileges.get(role, ["No privileges assigned."])

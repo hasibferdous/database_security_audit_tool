@@ -1,5 +1,6 @@
 import pyodbc
 from password_policy import check_password_policy
+from audit_log import log_audit
 
 # Connect to SQL Server
 def connect_to_database():
@@ -15,15 +16,14 @@ def connect_to_database():
 def audit_users():
     conn = connect_to_database()
     cursor = conn.cursor()
-    cursor.execute("SELECT Username, Role, Password FROM Users")
+    cursor.execute("SELECT Username, Password, Role FROM Users")
     results = cursor.fetchall()
     conn.close()
- 
- 
-     # Add password policy checking
+
     audited_results = []
     for row in results:
         username, password, role = row
-        password_policy = check_password_policy(password)
-        audited_results.append((username, role, password_policy))
+        password_policy, suggestions = check_password_policy(password)
+        audited_results.append((username, role, password_policy, suggestions))
+        log_audit(f"Audited user: {username}, Role: {role}, Password Policy: {password_policy}")
     return audited_results

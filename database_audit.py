@@ -1,6 +1,7 @@
 import pyodbc
 from password_policy import check_password_policy
 
+# Connect to the database
 def connect_to_database():
     connection = pyodbc.connect(
         "Driver={SQL Server};"
@@ -10,27 +11,32 @@ def connect_to_database():
     )
     return connection
 
-def audit_users():
+# Fetch all user data
+def fetch_users():
     conn = connect_to_database()
     cursor = conn.cursor()
     cursor.execute("SELECT Username, Password, Role FROM Users")
     results = cursor.fetchall()
     conn.close()
+    return results
 
+# Perform the audit
+def audit_users():
+    results = fetch_users()
     audited_results = []
+
     for row in results:
         username, password, role = row
-        password_policy, suggestions = check_password_policy(password)
-        audited_results.append((username, role, password_policy, suggestions))
+        password_status, suggestions = check_password_policy(password)
+        audited_results.append((username, role, password_status, suggestions))
+
     return audited_results
 
+# Check privileges based on roles
 def check_role_privileges(role):
-    """
-    Check privileges for the specified role.
-    """
     privileges = {
-        "Admin": ["Full Access", "Manage Users", "Database Config"],
-        "Auditor": ["View Logs", "Audit Data"],
-        "User": ["Limited Access"]
+        "Admin": ["Full Access", "Create, Read, Update, Delete"],
+        "Auditor": ["Read-Only Access", "Generate Reports"],
+        "User": ["Read Access", "Limited Privileges"],
     }
-    return privileges.get(role, ["No privileges assigned."])
+    return privileges.get(role, ["No Privileges Assigned"])

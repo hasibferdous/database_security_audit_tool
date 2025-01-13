@@ -36,6 +36,8 @@ def audit_users():
 def check_role_privileges(role):
     privileges = {
         "Admin": ["Full Access", "Create, Read, Update, Delete"],
+        "Manager": ["Full Access", "Create, Read, Update, Delete"],
+        "Developer": ["Full Access", "Create, Read, Update, Delete"],
         "Auditor": ["Read-Only Access", "Generate Reports"],
         "User": ["Read Access", "Limited Privileges"],
     }

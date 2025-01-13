@@ -1,0 +1,11 @@
+Username,Role,Password Status,Privileges,Suggestions
+admin,Admin,Strong,"Full Access, Create, Read, Update, Delete",None
+admin_user,Admin,Weak,"Full Access, Create, Read, Update, Delete",Add at least one uppercase letter.; Include at least one special character.
+admin4,Admin,Strong,"Full Access, Create, Read, Update, Delete",None
+auditor,Auditor,Strong,"Read-Only Access, Generate Reports",None
+auditor_user,Auditor,Weak,"Read-Only Access, Generate Reports",Add at least one uppercase letter.; Include at least one special character.
+auditor3,Auditor,Strong,"Read-Only Access, Generate Reports",None
+developer_user,Developer,Weak,"Full Access, Create, Read, Update, Delete",Add at least one uppercase letter.; Include at least one special character.
+manager_user,Manager,Weak,"Full Access, Create, Read, Update, Delete",Add at least one uppercase letter.; Include at least one special character.
+user1,User,Weak,"Read Access, Limited Privileges",Add at least one uppercase letter.; Include at least one numeric digit.; Include at least one special character.
+user14,User,Weak,"Read Access, Limited Privileges",Add at least one uppercase letter.; Include at least one numeric digit.; Include at least one special character.

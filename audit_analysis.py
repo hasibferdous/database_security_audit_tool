@@ -24,7 +24,7 @@ def write_log(username):
     if not os.path.exists("logs"):
         os.makedirs("logs")
     with open("logs/activity_log.txt", "a") as log_file:
-        log_file.write(f"User: {username}, Logged In: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        log_file.write(f"User Logged In: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
 
 # Export to PDF
 def export_to_pdf(analysis):
@@ -54,4 +54,3 @@ def export_to_csv(analysis):
         writer = csv.DictWriter(file, fieldnames=analysis[0].keys())
         writer.writeheader()
         writer.writerows(analysis)
-

@@ -8,8 +8,8 @@ from database_audit import audit_users
 def create_gui():
     root = tk.Tk()
     root.title("Database Security Audit Tool")
-    root.geometry("800x500")
-    root.configure(bg="#f0f8ff")
+    root.geometry("1300x600")
+    root.configure(bg="#00ffff")
 
     # Function to generate audit and display results
     def generate_audit():

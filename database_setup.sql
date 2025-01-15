@@ -3,21 +3,20 @@ CREATE DATABASE SecurityAuditDB;
 USE SecurityAuditDB;
 
 CREATE TABLE
-    Userz (
+    users1 (
         Username NVARCHAR (50) NOT NULL,
         Password NVARCHAR (50) NOT NULL,
         Role NVARCHAR (50) NOT NULL
     );
 
 -- Sample data
-INSERT INTO
-    Users (Username, Password, Role)
-VALUES
-    ('admin224', 'Admin@123', 'Admin'),
-    ('auditor2', 'Audit123!', 'Auditor'),
-    ('user145', '1234', 'User'),
-    ('user23', 'WeakPass', 'User'),
-	('user54', 'WeakPass', 'User');
+INSERT INTO Users (Username, Password, Role)  VALUES 
+('user73421', '2e7hss', 'Developer'),
+('user77821', 'ks45@dfghyjhss', 'Auditor'),
+('user72121', 'Wesdfghyjhss', 'User'),
+('user79121', 'lesdfghyjhss', 'Manager'),
+('user72421', '$Wesdfghyjhs78s', 'Admin');
+
 
 SELECT *FROM Users;
 
